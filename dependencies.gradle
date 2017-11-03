@@ -18,6 +18,7 @@ ext {
     def versionGson = '2.7'
     def versionRetrofit = '2.3.0'
     def versionConstraintLayout = '1.0.2'
+    def versionLifecycle = '1.0.0-rc1'
 
     ///
     /// TEST LIBS
@@ -33,7 +34,8 @@ ext {
             appCompat  : [group: 'com.android.support', name: 'appcompat-v7', version: versionAndroidSDK],
             design     : [group: 'com.android.support', name: 'design', version: versionAndroidSDK],
             constraintLayout     : [group: 'com.android.support.constraint', name: 'constraint-layout', version: versionConstraintLayout],
-            card     : [group: 'com.android.support', name: 'cardview-v7', version: versionAndroidSDK]
+            card     : [group: 'com.android.support', name: 'cardview-v7', version: versionAndroidSDK],
+            lifecycle     : [group: 'android.arch.lifecycle', name: 'extensions', version: versionLifecycle]
     ]
 
     def libs = [
@@ -71,6 +73,7 @@ ext {
             [configuration: "compile", dependency: androidLibs.design],
             [configuration: "compile", dependency: androidLibs.constraintLayout],
             [configuration: "compile", dependency: androidLibs.card],
+            [configuration: "compile", dependency: androidLibs.lifecycle],
             [configuration: "compile", dependency: libs.dagger],
             [configuration: "kapt",     dependency: libs.daggerCompiler],
             [configuration: "compile", dependency: libs.rxAndroid],
@@ -99,8 +102,10 @@ ext {
     ///
 
     def plugins = [
+            kapt:   'kotlin-kapt'
     ]
 
     appModulePlugins = [
+            plugins.kapt
     ]
 }
