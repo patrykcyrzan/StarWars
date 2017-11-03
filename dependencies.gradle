@@ -1,0 +1,106 @@
+ext {
+    compileSdkVersion = 26
+    buildToolsVersion = "26.0.0"
+    minSdkVersion = 18
+    targetSdkVersion = 22
+
+    def versionAndroidSDK = '26.+'
+
+    ///
+    /// LIBS VERSIONS
+    ///
+
+    def versionDagger = '2.11'
+    def versionRxJava = '2.1.1'
+    def versionRxAndroid = '2.0.1'
+    def versionRxKotlin = '2.1.0'
+    def versionOkHttp = '3.4.1'
+    def versionGson = '2.7'
+    def versionRetrofit = '2.3.0'
+    def versionConstraintLayout = '1.0.2'
+
+    ///
+    /// TEST LIBS
+    ///
+
+    def versionJUnit = '4.12'
+    def versionEspresso = '2.2.2'
+    def versionMockito = '2.+'
+    def versionMockitoKotlin = '1.5.0'
+    def versionRobolectric = '3.4.2'
+
+    def androidLibs = [
+            appCompat  : [group: 'com.android.support', name: 'appcompat-v7', version: versionAndroidSDK],
+            design     : [group: 'com.android.support', name: 'design', version: versionAndroidSDK],
+            constraintLayout     : [group: 'com.android.support.constraint', name: 'constraint-layout', version: versionConstraintLayout],
+            card     : [group: 'com.android.support', name: 'cardview-v7', version: versionAndroidSDK]
+    ]
+
+    def libs = [
+            dagger:          [group: 'com.google.dagger', name: 'dagger', version:versionDagger],
+            daggerCompiler:  [group: 'com.google.dagger', name: 'dagger-compiler', version:versionDagger],
+            rxAndroid:       [group: 'io.reactivex.rxjava2', name: 'rxandroid', version: versionRxAndroid],
+            rxJava:          [group: 'io.reactivex.rxjava2', name: 'rxjava',    version: versionRxJava],
+            rxKotlin:        [group: 'io.reactivex.rxjava2', name: 'rxkotlin', version: versionRxKotlin],
+            rxOkHttp:        [group: 'com.squareup.okhttp3', name: 'okhttp',    version: versionOkHttp],
+            rxOkHttpInterceptor:        [group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: versionOkHttp],
+            gson:            [group: 'com.google.code.gson', name: 'gson',    version: versionGson],
+            retrofit:        [group: 'com.squareup.retrofit2', name: 'retrofit', version: versionRetrofit],
+            retrofitConverterGson: [group: 'com.squareup.retrofit2', name: 'converter-gson', version: versionRetrofit],
+            retrofitRxJavaAdapter: [group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: versionRetrofit],
+    ]
+
+    def testLibs = [
+            junit           : [group: 'junit', name: 'junit', version: versionJUnit],
+            espressoCore    : [group: 'com.android.support.test.espresso', name: 'espresso-core', version: versionEspresso],
+            robolectric    : [group: 'org.robolectric', name: 'robolectric', version: versionRobolectric],
+            mockito         : [group: 'org.mockito', name: 'mockito-core', version: versionMockito],
+            mockitoKotlin         : [group: 'com.nhaarman', name: 'mockito-kotlin-kt1.1', version: versionMockitoKotlin]
+    ]
+
+    ///
+    /// Module Dependencies
+    ///
+
+    def supportAnnotationsExclude = {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    appModuleDependencies = [
+            [configuration: "compile", dependency: androidLibs.appCompat],
+            [configuration: "compile", dependency: androidLibs.design],
+            [configuration: "compile", dependency: androidLibs.constraintLayout],
+            [configuration: "compile", dependency: androidLibs.card],
+            [configuration: "compile", dependency: libs.dagger],
+            [configuration: "kapt",     dependency: libs.daggerCompiler],
+            [configuration: "compile", dependency: libs.rxAndroid],
+            [configuration: "compile", dependency: libs.rxJava],
+            [configuration: "compile", dependency: libs.rxKotlin],
+            [configuration: "compile", dependency: libs.retrofit],
+            [configuration: "compile", dependency: libs.rxOkHttp],
+            [configuration: "compile", dependency: libs.rxOkHttpInterceptor],
+            [configuration: "compile", dependency: libs.retrofitConverterGson],
+            [configuration: "compile", dependency: libs.retrofitRxJavaAdapter],
+            [configuration: "compile", dependency: libs.gson],
+
+            // Unit Test
+            [configuration: "testCompile", dependency: testLibs.junit],
+            [configuration: "testCompile", dependency: testLibs.robolectric],
+            [configuration: "testCompile", dependency: testLibs.mockito],
+            [configuration: "testCompile", dependency: testLibs.mockitoKotlin, options: {exclude group: 'org.jetbrains.kotlin'}],
+
+            // Android Test
+            [configuration: "androidTestCompile", dependency: testLibs.espressoCore,
+             options: supportAnnotationsExclude],
+    ]
+
+    ///
+    /// Plugins
+    ///
+
+    def plugins = [
+    ]
+
+    appModulePlugins = [
+    ]
+}
