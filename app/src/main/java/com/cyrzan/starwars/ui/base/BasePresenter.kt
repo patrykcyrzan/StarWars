@@ -6,12 +6,9 @@ package com.cyrzan.starwars.ui.base
  */
 
 
-abstract class BasePresenter<V : BaseContract.View> : BaseContract.Presenter<V> {
+open class BasePresenter<V : BaseContract.View> : BaseContract.Presenter<V> {
 
     override var view: V? = null
-
-    override val isViewAttached: Boolean
-        get() = view != null
 
     override fun attachView(view: V) {
         this.view = view
@@ -20,4 +17,5 @@ abstract class BasePresenter<V : BaseContract.View> : BaseContract.Presenter<V> 
     override fun detachView() {
         view = null
     }
+
 }

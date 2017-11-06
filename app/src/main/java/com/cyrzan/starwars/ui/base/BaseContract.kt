@@ -13,8 +13,6 @@ interface BaseContract {
 
         val view: V?
 
-        val isViewAttached: Boolean
-
         fun attachView(view: V)
 
         fun detachView()
