@@ -9,21 +9,13 @@ import com.cyrzan.starwars.BR
  */
 
 data class LoginViewModel(
-        private var _username: String,
-        private var _password: String
+        private var _isLoading: Boolean
 ) : BaseObservable() {
 
-    var username: String
-        @Bindable get() = _username
+    var isLoading: Boolean
+        @Bindable get() = _isLoading
         set(value) {
-            _username = username
-            notifyPropertyChanged(BR.username)
-        }
-
-    var password: String
-        @Bindable get() = _password
-        set(value) {
-            _password = password
-            notifyPropertyChanged(BR.password)
+            _isLoading = isLoading
+            notifyPropertyChanged(BR.loading)
         }
 }
