@@ -44,12 +44,10 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     override fun showLoading() {
         viewModel.isLoading = true
-        viewModel.notifyChange()
     }
 
     override fun hideLoading() {
         viewModel.isLoading = false
-        viewModel.notifyChange()
     }
 
     override fun loginSuccess() {
@@ -62,7 +60,6 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     override fun showWebView() {
         viewModel.isWebViewVisible = true
-        viewModel.notifyChange()
 
         webView.loadUrl(Constants.AUTH_URL)
     }
