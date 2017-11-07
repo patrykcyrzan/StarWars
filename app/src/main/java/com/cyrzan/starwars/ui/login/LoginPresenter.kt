@@ -1,6 +1,5 @@
 package com.cyrzan.starwars.ui.login
 
-import android.util.Log
 import com.cyrzan.starwars.data.repository.DribbbleRepository
 import javax.inject.Inject
 
@@ -21,14 +20,15 @@ class LoginPresenter @Inject constructor(private val repository: DribbbleReposit
     }
 
     override fun doLogin() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view?.showLoading()
+        view?.showWebView()
     }
 
     override fun handleSuccess() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //view?.hideLoading()
     }
 
     override fun handleError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //view?.hideLoading()
     }
 }

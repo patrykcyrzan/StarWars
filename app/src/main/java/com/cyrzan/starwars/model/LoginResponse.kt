@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by Patryk on 06.11.2017.
  */
 
-class LoginResponse{
+class LoginResponse {
 
     @SerializedName("access_token")
     val token: String? = null

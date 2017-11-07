@@ -1,18 +1,17 @@
 package com.cyrzan.starwars.ui.login
 
-import android.support.v7.app.AppCompatActivity
+import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.cyrzan.starwars.R
 import com.cyrzan.starwars.StarWarsApplication
 import com.cyrzan.starwars.databinding.ActivityLoginBinding
 import com.cyrzan.starwars.di.module.ActivityModule
 import com.cyrzan.starwars.ui.base.BaseActivity
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import com.cyrzan.starwars.BR
+import com.cyrzan.starwars.util.Constants
+import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
-
-
 
 
 class LoginActivity : BaseActivity(), LoginContract.View {
@@ -20,13 +19,23 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     @Inject
     lateinit var presenter: LoginPresenter
 
+    private lateinit var viewDataBinding: ActivityLoginBinding
+    private lateinit var viewModel: LoginViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val viewModel: LoginViewModel = LoginViewModel(false)
-        val viewDataBinding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        viewDataBinding.setVariable(BR.viewModel, viewModel)
-        viewDataBinding.setVariable(BR.presenter, presenter)
+        viewModel = LoginViewModel()
+        viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        viewDataBinding.viewModel = viewModel
+        viewDataBinding.presenter = presenter
+
+        setupWebView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.attachView(this)
     }
 
     override fun inject() {
@@ -34,11 +43,13 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     }
 
     override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        viewModel.isLoading = true
+        viewModel.notifyChange()
     }
 
     override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        viewModel.isLoading = false
+        viewModel.notifyChange()
     }
 
     override fun loginSuccess() {
@@ -47,5 +58,23 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     override fun loginFailure() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showWebView() {
+        viewModel.isWebViewVisible = true
+        viewModel.notifyChange()
+
+        webView.loadUrl(Constants.AUTH_URL)
+    }
+
+    private fun setupWebView() {
+        webView.apply {
+            webViewClient = object : WebViewClient() {
+
+                override fun onPageFinished(view: WebView, url: String) {
+                    hideLoading()
+                }
+            }
+        }
     }
 }

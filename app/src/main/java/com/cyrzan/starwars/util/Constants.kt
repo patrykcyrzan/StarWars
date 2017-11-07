@@ -10,5 +10,5 @@ object Constants {
 
     const val CLIENT_ID = BuildConfig.CLIENT_ID
 
-    const val AUTH_URL = BuildConfig.DRIBBBLE_AUTH + "?client_id=$CLIENT_ID&scope=public+write"
+    const val AUTH_URL = BuildConfig.DRIBBBLE_AUTH + "authorize?client_id=$CLIENT_ID&scope=public+write"
 }

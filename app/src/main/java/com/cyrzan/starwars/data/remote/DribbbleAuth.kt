@@ -3,7 +3,6 @@ package com.cyrzan.starwars.data.remote
 import com.cyrzan.starwars.BuildConfig
 import com.cyrzan.starwars.model.LoginResponse
 import io.reactivex.Single
-import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
