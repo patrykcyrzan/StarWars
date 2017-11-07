@@ -15,7 +15,7 @@ import javax.inject.Singleton
 class DribbbleRepository
 @Inject constructor(private val dribbbleAuth: DribbbleAuth, private val dribbbleApi: DribbbleApi) {
 
-    fun loginUser(): Single<LoginResponse> {
-        return dribbbleAuth.loginUser("")
+    fun loginUser(code: String): Single<LoginResponse> {
+        return dribbbleAuth.loginUser(code)
     }
 }

@@ -2,6 +2,7 @@ package com.cyrzan.starwars.ui.login
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.util.Log
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.cyrzan.starwars.R
@@ -51,11 +52,11 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     }
 
     override fun loginSuccess() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.i("LoginActivity", "SUCCESS")
     }
 
     override fun loginFailure() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.i("LoginActivity", "FAIL")
     }
 
     override fun showWebView() {
@@ -66,12 +67,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     private fun setupWebView() {
         webView.apply {
-            webViewClient = object : WebViewClient() {
-
-                override fun onPageFinished(view: WebView, url: String) {
-                    hideLoading()
-                }
-            }
+            webViewClient = LoginWebClient({presenter.handleUrl(it)})
         }
     }
 }
