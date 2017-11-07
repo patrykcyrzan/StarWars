@@ -7,14 +7,26 @@ import com.cyrzan.starwars.StarWarsApplication
 import com.cyrzan.starwars.databinding.ActivityLoginBinding
 import com.cyrzan.starwars.di.module.ActivityModule
 import com.cyrzan.starwars.ui.base.BaseActivity
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
+import com.cyrzan.starwars.BR
+import javax.inject.Inject
+
+
+
 
 class LoginActivity : BaseActivity(), LoginContract.View {
+
+    @Inject
+    lateinit var presenter: LoginPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val viewModel: LoginViewModel
-
+        val viewModel: LoginViewModel = LoginViewModel(false)
+        val viewDataBinding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        viewDataBinding.setVariable(BR.viewModel, viewModel)
+        viewDataBinding.setVariable(BR.presenter, presenter)
     }
 
     override fun inject() {

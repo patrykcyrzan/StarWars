@@ -1,12 +1,14 @@
 package com.cyrzan.starwars.ui.login
 
+import android.util.Log
 import com.cyrzan.starwars.data.repository.DribbbleRepository
+import javax.inject.Inject
 
 /**
  * Created by Patryk on 06.11.2017.
  */
 
-class LoginPresenter(private val repository: DribbbleRepository) : LoginContract.Presenter {
+class LoginPresenter @Inject constructor(private val repository: DribbbleRepository) : LoginContract.Presenter {
 
     override var view: LoginContract.View? = null
 

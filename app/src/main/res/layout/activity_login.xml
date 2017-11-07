@@ -4,9 +4,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="com.cyrzan.starwars.ui.login.LoginViewModel"/>
+        <variable
+            name="presenter"
+            type="com.cyrzan.starwars.ui.login.LoginPresenter"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -18,10 +22,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login"
+            android:onClick="@{() -> presenter.doLogin()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>
