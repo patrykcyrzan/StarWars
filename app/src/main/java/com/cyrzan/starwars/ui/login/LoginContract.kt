@@ -9,6 +9,7 @@ import com.cyrzan.starwars.ui.base.BaseContract
 interface LoginContract {
     interface View : BaseContract.View {
         fun showLoading()
+        fun showWebView()
         fun hideLoading()
         fun loginSuccess()
         fun loginFailure()

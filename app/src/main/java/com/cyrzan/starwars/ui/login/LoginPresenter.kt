@@ -1,12 +1,13 @@
 package com.cyrzan.starwars.ui.login
 
 import com.cyrzan.starwars.data.repository.DribbbleRepository
+import javax.inject.Inject
 
 /**
  * Created by Patryk on 06.11.2017.
  */
 
-class LoginPresenter(private val repository: DribbbleRepository) : LoginContract.Presenter {
+class LoginPresenter @Inject constructor(private val repository: DribbbleRepository) : LoginContract.Presenter {
 
     override var view: LoginContract.View? = null
 
@@ -19,14 +20,15 @@ class LoginPresenter(private val repository: DribbbleRepository) : LoginContract
     }
 
     override fun doLogin() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view?.showLoading()
+        view?.showWebView()
     }
 
     override fun handleSuccess() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //view?.hideLoading()
     }
 
     override fun handleError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //view?.hideLoading()
     }
 }
