@@ -11,6 +11,7 @@ import com.cyrzan.starwars.databinding.ActivityLoginBinding
 import com.cyrzan.starwars.di.module.ActivityModule
 import com.cyrzan.starwars.ui.base.BaseActivity
 import com.cyrzan.starwars.util.Constants
+import com.sdsmdg.tastytoast.TastyToast
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
@@ -52,11 +53,11 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     }
 
     override fun loginSuccess() {
-        Log.i("LoginActivity", "SUCCESS")
+        TastyToast.makeText(applicationContext, resources.getString(R.string.login_successs), TastyToast.LENGTH_LONG, TastyToast.SUCCESS)
     }
 
     override fun loginFailure() {
-        Log.i("LoginActivity", "FAIL")
+        TastyToast.makeText(applicationContext, resources.getString(R.string.login_failure), TastyToast.LENGTH_LONG, TastyToast.SUCCESS)
     }
 
     override fun showWebView() {

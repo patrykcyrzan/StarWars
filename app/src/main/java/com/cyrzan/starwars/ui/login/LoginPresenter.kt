@@ -55,12 +55,16 @@ class LoginPresenter @Inject constructor(private val repository: DribbbleReposit
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {handleAccessToken(it)},
-                        { Log.i("Loginpresenter", "brak tokena")}
+                        {handleErrorAccessToken(it)}
                 )
     }
 
     private fun handleAccessToken(response: LoginResponse){
-        Log.i("LoginPresenter", "token ${response.token}")
         repository.saveUserToken(response.token)
+        view?.loginSuccess()
+    }
+
+    private fun handleErrorAccessToken(t: Throwable){
+        view?.loginFailure()
     }
 }
