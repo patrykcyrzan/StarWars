@@ -2,6 +2,7 @@ package com.cyrzan.starwars.ui.login
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.util.Log
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.cyrzan.starwars.R
@@ -10,6 +11,7 @@ import com.cyrzan.starwars.databinding.ActivityLoginBinding
 import com.cyrzan.starwars.di.module.ActivityModule
 import com.cyrzan.starwars.ui.base.BaseActivity
 import com.cyrzan.starwars.util.Constants
+import com.sdsmdg.tastytoast.TastyToast
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
@@ -51,11 +53,11 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     }
 
     override fun loginSuccess() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TastyToast.makeText(applicationContext, resources.getString(R.string.login_successs), TastyToast.LENGTH_LONG, TastyToast.SUCCESS)
     }
 
     override fun loginFailure() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TastyToast.makeText(applicationContext, resources.getString(R.string.login_failure), TastyToast.LENGTH_LONG, TastyToast.SUCCESS)
     }
 
     override fun showWebView() {
@@ -66,12 +68,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     private fun setupWebView() {
         webView.apply {
-            webViewClient = object : WebViewClient() {
-
-                override fun onPageFinished(view: WebView, url: String) {
-                    hideLoading()
-                }
-            }
+            webViewClient = LoginWebClient({presenter.handleUrl(it)})
         }
     }
 }

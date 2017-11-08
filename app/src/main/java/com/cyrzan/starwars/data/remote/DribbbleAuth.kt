@@ -12,7 +12,7 @@ import retrofit2.http.Query
 
 interface DribbbleAuth {
 
-    @POST("/token")
+    @POST("token")
     fun loginUser(@Query("code") authCode: String,
                   @Query("client_id") clientId: String = BuildConfig.CLIENT_ID,
                   @Query("client_secret") clientSecret: String = BuildConfig.CLIENT_SECRET): Single<LoginResponse>

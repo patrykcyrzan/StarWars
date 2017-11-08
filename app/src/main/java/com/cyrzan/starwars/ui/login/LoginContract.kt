@@ -17,7 +17,6 @@ interface LoginContract {
 
     interface Presenter : BaseContract.Presenter<View> {
         fun doLogin()
-        fun handleSuccess()
-        fun handleError()
+        fun handleUrl(url: String?)
     }
 }

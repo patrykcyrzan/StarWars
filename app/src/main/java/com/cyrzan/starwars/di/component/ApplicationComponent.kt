@@ -5,6 +5,7 @@ import android.content.Context
 import com.cyrzan.starwars.di.module.ActivityModule
 import com.cyrzan.starwars.di.module.ApiModule
 import com.cyrzan.starwars.di.module.ApplicationModule
+import com.cyrzan.starwars.di.module.PreferencesModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -13,7 +14,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = arrayOf(ApplicationModule::class, (ApiModule::class)))
+@Component(modules = arrayOf(ApplicationModule::class, ApiModule::class, PreferencesModule::class))
 interface ApplicationComponent {
 
     fun app(): Application

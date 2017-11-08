@@ -3,6 +3,7 @@ package com.cyrzan.starwars.ui.login
 import com.cyrzan.starwars.data.repository.DribbbleRepository
 import com.cyrzan.starwars.model.LoginResponse
 import com.cyrzan.starwars.util.TestSchedulerProvider
+import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
@@ -39,7 +40,7 @@ class LoginPresenterTest {
         }
 
         // When
-        whenever(mockRepository.loginUser()).thenReturn(single)
+        whenever(mockRepository.loginUser(any())).thenReturn(single)
 
         presenter.attachView(mockView)
         presenter.doLogin()
