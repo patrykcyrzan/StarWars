@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StarWars.iml" filepath="$PROJECT_DIR$/StarWars.iml" />
-      <module fileurl="file://C:\Users\Patryk\AndroidStudioProjects\StarWars\.idea\StarWars.iml" filepath="C:\Users\Patryk\AndroidStudioProjects\StarWars\.idea\StarWars.iml" />
       <module fileurl="file://C:\Moje\AndroidProjekty\StarWars\StarWars.iml" filepath="C:\Moje\AndroidProjekty\StarWars\StarWars.iml" />
+      <module fileurl="file://C:\Users\Patryk\AndroidStudioProjects\StarWars\.idea\StarWars.iml" filepath="C:\Users\Patryk\AndroidStudioProjects\StarWars\.idea\StarWars.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Moje\AndroidProjekty\StarWars\app\app.iml" filepath="C:\Moje\AndroidProjekty\StarWars\app\app.iml" />
     </modules>

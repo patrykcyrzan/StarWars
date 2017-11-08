@@ -61,5 +61,6 @@ class LoginPresenter @Inject constructor(private val repository: DribbbleReposit
 
     private fun handleAccessToken(response: LoginResponse){
         Log.i("LoginPresenter", "token ${response.token}")
+        repository.saveUserToken(response.token)
     }
 }
