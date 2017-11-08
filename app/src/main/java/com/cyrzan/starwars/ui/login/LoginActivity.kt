@@ -2,9 +2,6 @@ package com.cyrzan.starwars.ui.login
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.util.Log
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import com.cyrzan.starwars.R
 import com.cyrzan.starwars.StarWarsApplication
 import com.cyrzan.starwars.databinding.ActivityLoginBinding
@@ -68,7 +65,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     private fun setupWebView() {
         webView.apply {
-            webViewClient = LoginWebClient({presenter.handleUrl(it)})
+            webViewClient = LoginWebClient({ presenter.handleUrl(it) })
         }
     }
 }
