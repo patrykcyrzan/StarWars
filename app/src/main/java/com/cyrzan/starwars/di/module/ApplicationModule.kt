@@ -2,6 +2,8 @@ package com.cyrzan.starwars.di.module
 
 import android.app.Application
 import android.content.Context
+import com.cyrzan.starwars.ui.Navigator
+import com.cyrzan.starwars.ui.NavigatorApi
 import com.cyrzan.starwars.util.AppSchedulerProvider
 import com.cyrzan.starwars.util.SchedulerProvider
 import dagger.Module
@@ -28,4 +30,8 @@ class ApplicationModule(var app: Application) {
     @Provides
     @Singleton
     fun provideSchedulerProvider(): SchedulerProvider = AppSchedulerProvider()
+
+    @Provides
+    @Singleton
+    fun provideNavigator(): NavigatorApi = Navigator()
 }
