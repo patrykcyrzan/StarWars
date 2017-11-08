@@ -6,15 +6,15 @@ import android.content.SharedPreferences
  * Created by Patryk on 08.11.2017.
  */
 
-class UserPreferencesImpl constructor(val sharedPreferences: SharedPreferences){
+class UserPreferencesImpl constructor(val sharedPreferences: SharedPreferences) {
 
     private val USER_PREFERENCES = "user_pref"
     private val USER_TOKEN = "user_token"
 
     val token: String
-    get() = sharedPreferences.getString(USER_TOKEN, null)
+        get() = sharedPreferences.getString(USER_TOKEN, null)
 
-    fun saveUserToken(token: String?){
+    fun saveUserToken(token: String?) {
         sharedPreferences.put {
             putString(USER_TOKEN, token)
         }

@@ -1,19 +1,18 @@
 package com.cyrzan.starwars.ui.login
 
 import android.net.Uri
-import android.util.Log
 import com.cyrzan.starwars.data.repository.DribbbleRepository
 import com.cyrzan.starwars.model.LoginResponse
 import com.cyrzan.starwars.util.Constants
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.cyrzan.starwars.util.SchedulerProvider
 import javax.inject.Inject
+
 
 /**
  * Created by Patryk on 06.11.2017.
  */
 
-class LoginPresenter @Inject constructor(private val repository: DribbbleRepository) : LoginContract.Presenter {
+class LoginPresenter @Inject constructor(private val repository: DribbbleRepository, private val schedulerProvider: SchedulerProvider) : LoginContract.Presenter {
 
     override var view: LoginContract.View? = null
 
@@ -51,20 +50,20 @@ class LoginPresenter @Inject constructor(private val repository: DribbbleReposit
     private fun onLoginSuccess(code: String) {
         view?.showLoading()
         repository.loginUser(code)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(schedulerProvider.ioScheduler())
+                .observeOn(schedulerProvider.uiScheduler())
                 .subscribe(
-                        {handleAccessToken(it)},
-                        {handleErrorAccessToken(it)}
+                        { handleAccessToken(it) },
+                        { handleErrorAccessToken(it) }
                 )
     }
 
-    private fun handleAccessToken(response: LoginResponse){
+    private fun handleAccessToken(response: LoginResponse) {
         repository.saveUserToken(response.token)
         view?.loginSuccess()
     }
 
-    private fun handleErrorAccessToken(t: Throwable){
+    private fun handleErrorAccessToken(t: Throwable) {
         view?.loginFailure()
     }
 }

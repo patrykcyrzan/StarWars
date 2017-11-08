@@ -20,11 +20,11 @@ class DribbbleRepository
         return dribbbleAuth.loginUser(code)
     }
 
-    fun saveUserToken(token: String?){
+    fun saveUserToken(token: String?) {
         userPreferencesImpl.saveUserToken(token)
     }
 
-    fun getUsetToken(): String{
+    fun getUsetToken(): String {
         return userPreferencesImpl.token
     }
 }

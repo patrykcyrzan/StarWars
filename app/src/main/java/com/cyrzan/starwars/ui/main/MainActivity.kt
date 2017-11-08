@@ -1,7 +1,7 @@
 package com.cyrzan.starwars.ui.main
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.cyrzan.starwars.R
 
 class MainActivity : AppCompatActivity() {

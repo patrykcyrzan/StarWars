@@ -1,13 +1,12 @@
 package com.cyrzan.starwars.di.module
 
-import dagger.Module
-import android.preference.PreferenceManager
 import android.app.Application
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import com.cyrzan.starwars.data.local.UserPreferencesImpl
+import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
-
 
 
 /**
@@ -25,7 +24,7 @@ class PreferencesModule {
 
     @Provides
     @Singleton
-    fun providesUserPreferences(sharedPreferences: SharedPreferences): UserPreferencesImpl{
+    fun providesUserPreferences(sharedPreferences: SharedPreferences): UserPreferencesImpl {
         return UserPreferencesImpl(sharedPreferences)
     }
 }
